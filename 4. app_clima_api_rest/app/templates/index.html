@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet">
+</head>
+
+<body class=" w-full flex items-center justify-center h-screen bg-gradient-to-r from-slate-900 to-slate-700 ">
+    <div class="w-full h-4/6 flex flex-col bg-transparent  rounded-lg  items-center ">
+        <h1 class="text-4xl font-semibold font-mono text-white inline  ">
+            Descubre el clima de la ciudades
+        </h1>
+        <p class="opacity-55 text-slate-300">Ingresa el nomnbre de tu ciudad y descubre el clima que hay en el!</p>
+        <div class="w-full max-w-sm min-w-[200px] flex flex-col bg">
+            <form method="POST" class="flex flex-col">
+                <input type="text" class="outline-none py-1 px-1 rounded-lg my-4 bg-slate-900 text-slate-100"
+                    placeholder="Ingresa tu ciudad" id="ciudad" name="ciudad">
+                <button class="bg-gradient-to-r from-cyan-300 to-sky-100 py-1 rounded-lg font-mono text-slate-500"
+                    type="submit">Buscar</button>
+            </form>
+        </div>
+        {% if weather_data %}
+                <div class="w-full h-4/5 flex flex-row bg-transparent px-14 rounded-lg  items-center mt-8 ">
+                    {% for weather in weather_data %}
+                    <div class="w-full h-full flex flex-row mx-10 ">
+                        <div class="w-full h-auto flex flex-col justify-evenly bg-gradient-to-r from-green-200 to-blue-500 rounded-lg p-5 items-center animate-fade-in">
+                            {% if weather.error %}
+                                <p class="text-red-700"> <span> {{ weather.city }}</span>: {{weather.error}} </p>
+                            {% else %}
+                                <h6 class="text-3xl font-mono font-semibold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent"> {{ weather.city }} </h6>
+                                <h3> {{ weather.temperature }} °C</h3>
+                                <p> <span class="text-xl">Sencacion termica:</span> {{ weather.feels_like }} °C</p>
+                                <p> Min: {{ weather.temp_min }} °C Max: {{ weather.temp_max }} </p>
+                                <div class="w-20
+                                h-20">
+                                    <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="{{ weather.description }}" class="object-cover w-full h-full animate-jelly" style="max-width: 100px;">
+                                </div>
+                                <p> {{weather.description | capitalize}} </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+    </div>
+</body>
+
+</html>
+
