@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD JUEGOS - {% block titulo %}{% endblock %} </title>
+    <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="{{ url_for('static', filename='/img/Arcane_logo_icon.webp') }}" type="image/x-icon">
+</head>
+    <body class="bg-primary">
+        <script src="/app/js/main.js"></script>
+        <nav class="w-full h-20 bg-secundary flex flex-row items-center justify-between   ">
+            <div class="w-10 h-10 mb-4 ml-4">
+                <img src="{{ url_for('static', filename='/img/Arcane_logo_icon.webp') }}" alt="" class="object-cover hover:animate-flip-horizontal" > 
+            </div>
+                
+            <button class="px-3 py-2 bg-utilidad mr-4 text-slate-200 rounded-md active:translate-y-1 transition-all font-semibold font-parkinsans">
+                Ayuda
+            </button>
+        </nav>
+        {% block contenido %}
+        
+        {% endblock %}
+        <footer>
+            <div class="w-full h-20 bg-secundary flex items-center ">
+                <h3 class="text-xl text-textos w-full text-center">
+                    Todos los derechos reservados a Daniel
+                </h3>
+            </div>
+        </footer>
+    </body>
+</html>
+

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block titulo %} Juegos {% endblock %}
+{% block contenido %}
+    <div class="h-screen w-full bg-primary">
+        <div class="w-full h-3/6 flex flex-col items-center justify-center mt-20">
+            <h3 class="text-2xl text-textos mb-5  font-parkinsans font-bold"> Juegos </h3>
+            <a href="{{url_for('formulario_agregar_juego')}}" class="px-5 py-3 bg-btn rounded-md self-start ml-[150px] mb-2 text-textos font-parkinsans active:translate-y-1 transition-all bg-btn_guardar sticky "> + Agregar</a>
+            <div class=" overflow-x-auto w-4/5 bg-secundary rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 animate-fade-in">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr class="">
+                            <th scope="col" class="px-6 py-3 text-center font-parkinsans text-textos">
+                                Nombre
+                            </th> 
+                            <th scope="col" class="px-6 py-3 text-center font-parkinsans text-textos">
+                                Descripcion
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-center font-parkinsans text-textos">
+                                Precio
+                            </th>
+                            <th scope="col" class="px-3 py-3 text-center font-parkinsans text-textos">
+                                Utilidades
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for juego in juegos %}
+                        <tr>
+                            <td class="text-center py-6 px-4 font-parkinsans text-textos">{{juego.nombre}}</td>
+                            <td class="text-center py-6 px-4 font-parkinsans text-textos">{{juego.descripcion}}</td>
+                            <td class="text-center py-6 px-4 font-parkinsans text-textos">{{juego.precio}}</td>
+                            <td class=" flex flex-row my-3 gap-x-2 items-center font-parkinsans text-textos ">
+                                <a href="{{ url_for('detalles', id=juego.id) }}" class="py-2 px-3 rounded-md bg-btn_detalles text-textos active:translate-y-1 transition-all font-parkinsans grow text-center active:animate-tilt ">Detalles 👁️</a>
+                                <a href="{{ url_for('formulario_editar_juego', id=juego.id) }}" class="py-2 px-3 rounded-md bg-btn_guardar text-textos active:translate-y-1 transition-all font-parkinsans grow text-center active:animate-tilt">Editar ✍🏻</a>
+                            
+                            
+                            
+                            
+                                <form action="" method="POST" class= " flex items-center grow mr-1">
+                                    <input type="hidden" name="id" value="{{juego[0]}}">
+                                    <a href="{{ url_for('eliminar_juego', id=juego.id) }}" onclick="return confirm('¿Estás seguro de que deseas eliminar este juego?');" class="py-2 px-3 rounded-md bg-btn_eliminar text-textos active:translate-y-1 transition-all font-parkinsans grow text-center">Eliminar 🗑️</a>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

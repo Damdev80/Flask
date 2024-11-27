@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block titulo %}
+detalles Juego
+{% endblock %}
+{% block contenido %}
+<div class="h-screen w-full my-4 flex justify-center items-center">
+    <div class="flex flex-col w-4/5 h-4/5 bg-secundary rounded-lg xl:w-3/6 xl:h-3/4">
+        <h1 class="text-3xl text-center mt-4 mb-2 font-parkinsans text-textos">Detalles</h1>
+        <p class="text-center font-parkinsans text-gray-400">Aqui encontraras lo detalles del juego.</p>
+        <form action="{{ url_for('actualizar_juego', id=juego['id']) }}" class="w-full h-4/5 flex justify-around flex-col p-10" method="post">
+            <div class="w-full">
+                <label for="nombre" class="mb-3 font-parkinsans text-textos">Nombre</label>
+                <input type="text" class="w-full bg-slate-600 rounded-md focus:outline-none py-2 pl-3 font-parkinsans text-textos" name="nombre" id="nombre" value="{{ juego.nombre }}" disabled>
+            </div>
+            <div class="w-full">
+                <label for="descripcion" class="mb-3 font-parkinsans text-textos">Descripción</label>
+                <input type="text" class="w-full bg-slate-600 rounded-md py-2 pl-3 font-parkinsans text-textos" name="descripcion" id="descripcion" value="{{ juego.descripcion }}" disabled>
+            </div>
+            <div class="w-full">
+                <label for="precio" class="mb-3 font-parkinsans text-textos">Precio</label>
+                <input type="text" class="w-full bg-slate-600 rounded-md py-2  pl-3 font-parkinsans text-textos" name="precio" id="precio" value="{{ juego.precio }}"disabled>
+            </div>
+            <div class="w-full justify-center flex ">
+                <a href="{{ url_for('juegos') }}" class="w-2/5 py-2 text-center rounded-lg font-parkinsans text-textos active:translate-y-1 transition-all bg-btn_guardar">⬅️ Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

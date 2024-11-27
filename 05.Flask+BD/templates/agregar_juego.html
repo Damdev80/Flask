@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}
+Agregar juegos
+{% endblock %}
+{% block contenido%}
+
+<div class="h-screen w-full my-4 flex justify-center items-center">
+    
+    <div class="flex flex-col w-4/5 h-4/5 bg-secundary rounded-lg  xl:w-3/6 xl:h-3/4 ">
+        <h1 class="text-3xl text-center mt-4 mb-2 font-parkinsans text-textos">
+            Agregar juego
+        </h1>
+        <p class="text-center font-parkinsans text-slate-400">Agrega un nuevo juego a la lista...</p>
+        <form action="{{url_for('guardar_juego')}}" class="w-full h-4/5 flex justify-around flex-col p-10" method="post">
+            <div class="w-full">
+                <label for="nombre" class="mb-3 font-parkinsans text-textos"> Nombre </label>
+                <input type="text"  class="w-full bg-slate-600 rounded-md focus:outline-none py-2 pl-2 font-parkinsans text-textos" name="nombre" id="nombre">
+            </div>
+            <div class="w-full">
+                <label for="descripcion" class="mb-3 font-parkinsans text-textos"> Descripcion </label>
+                <input type="text" class="w-full bg-slate-600 rounded-md py-2 pl-2 font-parkinsans text-textos" name="descripcion" id="descripcion">
+            </div>
+            <div class="w-full">
+                <label for="precio" class="mb-3 font-parkinsans text-textos"> Precio</label>
+                <input type="text" class="w-full bg-slate-600 rounded-md py-2 pl-2 font-parkinsans text-textos" name="precio" id="precio">
+            </div>
+
+            <div class="w-full justify-around flex ">
+                <button type="submit" class="py-2 w-2/5 bg-btn_guardar rounded-md font-parkinsans text-textos">Guardar</button>
+                <a href="{{url_for('juegos')}}" class="w-2/5 py-2 b text-center bg-gray-500 rounded-lg font-parkinsans text-textos">⬅️ Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
